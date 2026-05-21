@@ -118,8 +118,6 @@ from folium.plugins import (
 from branca.element import MacroElement, Template
 from django.views.decorators.clickjacking import xframe_options_exempt
 from datetime import datetime
-import pandas as pd
-import numpy as np
 from django.views.decorators.clickjacking import xframe_options_exempt
 import folium
 from folium.plugins import HeatMap
