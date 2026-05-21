@@ -37,7 +37,7 @@ export default function Login() {
     setErr("");
     setLoading(true);
     setOtpCode("");
-    setOtpId(null);
+    setUserId(null);
 
     try {
       const payload = {
@@ -153,7 +153,7 @@ api.defaults.headers.common.Authorization = `Bearer ${access}`;
   const resetToLogin = () => {
     setPhase("login");
     setOtpCode("");
-    setOtpId(null);
+    setUserId(null);
     setErr("");
   };
 
