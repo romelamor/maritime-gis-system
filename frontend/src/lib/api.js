@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE || "https://maritime-gis-system.onrender.com",
+  baseURL: import.meta.env.VITE_API_BASE || "https://maritime-backend-0gib.onrender.com",
 });
 
 // Attach access token on every request
@@ -30,7 +30,7 @@ api.interceptors.response.use(
 
       try {
         const { data } = await axios.post(
-          (import.meta.env.VITE_API_BASE || "https://maritime-gis-system.onrender.com") + "/api/token/refresh/",
+          (import.meta.env.VITE_API_BASE || "https://maritime-backend-0gib.onrender.com") + "/api/token/refresh/",
           { refresh }
         );
         localStorage.setItem("access", data.access);
