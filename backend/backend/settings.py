@@ -3,6 +3,8 @@ Django settings for backend project.
 """
 
 from pathlib import Path
+import os
+import dj_database_url
 from datetime import timedelta
 import importlib.util
 from decouple import config
@@ -17,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ==========================
 SECRET_KEY = config("SECRET_KEY", default="dev-only-change-me")
 DEBUG = config("DEBUG", default=True, cast=bool)
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = ["*"]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -83,10 +86,10 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # DATABASE
 # ==========================
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": dj_database_url.config(
+        default="postgresql://postgres:admin123@127.0.0.1:5432/maritime_db",
+        conn_max_age=600,
+    )
 }
 
 # ==========================
@@ -121,6 +124,7 @@ USE_TZ = True
 # ==========================
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
