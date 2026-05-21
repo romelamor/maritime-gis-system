@@ -102,11 +102,11 @@ from django.views.decorators.http import require_GET
 from django.db.models import F
 from django.utils.dateparse import parse_date
 from django.db.models import F, Q, Case, When, CharField
-import matplotlib
+# import matplotlib
 
-matplotlib.use("Agg")  # headless
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
+# matplotlib.use("Agg")  # headless
+# import matplotlib.pyplot as plt
+# import matplotlib.dates as mdates
 from folium.plugins import (
     HeatMap,
     MiniMap,
