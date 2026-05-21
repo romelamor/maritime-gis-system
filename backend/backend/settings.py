@@ -87,7 +87,7 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # ==========================
 DATABASES = {
     "default": dj_database_url.config(
-        default="postgresql://postgres:admin123@127.0.0.1:5432/maritime_db",
+        default=config("DATABASE_URL"),
         conn_max_age=600,
     )
 }
