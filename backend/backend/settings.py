@@ -167,11 +167,16 @@ REST_FRAMEWORK = {
 # ==========================
 # CORS / CSRF
 # ==========================
-VITE_ORIGIN = config("VITE_ORIGIN", default="http://localhost:5173")
-VITE_ORIGIN_ALT = config("VITE_ORIGIN_ALT", default="http://127.0.0.1:5173")
+# VITE_ORIGIN = config("VITE_ORIGIN", default="http://localhost:5173")
+# VITE_ORIGIN_ALT = config("VITE_ORIGIN_ALT", default="http://127.0.0.1:5173")
 
-CORS_ALLOWED_ORIGINS = [VITE_ORIGIN, VITE_ORIGIN_ALT]
-CSRF_TRUSTED_ORIGINS = [VITE_ORIGIN, VITE_ORIGIN_ALT]
+# CORS_ALLOWED_ORIGINS = [VITE_ORIGIN, VITE_ORIGIN_ALT]
+# CSRF_TRUSTED_ORIGINS = [VITE_ORIGIN, VITE_ORIGIN_ALT]
+CORS_ALLOW_ALL_ORIGINS = True
+
+CSRF_TRUSTED_ORIGINS = [
+     "https://maritime-gis-frontend.onrender.com",
+]
 
 # ==========================
 # AUTH MODEL
