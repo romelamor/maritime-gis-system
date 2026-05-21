@@ -15,7 +15,7 @@ export default function Login() {
   // phase: "login" | "otp"
   const [phase, setPhase] = useState("login");
   const [otpCode, setOtpCode] = useState("");
-  const [userId, setUserId] = useState(null);
+  const [otpId, setOtpId] = useState(null); // galing sa backend (EmailOTP id)
 
   const navigate = useNavigate();
 
@@ -51,13 +51,13 @@ export default function Login() {
       console.log("login-2fa (email OTP) response:", data);
 
       // expected response: { otp_id, detail: "OTP sent to your email." }
-      if (!data.user_id) {
+      if (!data.otp_id) {
         throw new Error(
           data.detail || "No OTP session ID returned. Please check the backend response."
         );
       }
 
-      setUserId(data.user_id);
+      setOtpId(data.otp_id);
       setPhase("otp");
     } catch (e) {
       console.error("Login error:", e);
@@ -78,7 +78,7 @@ export default function Login() {
     setErr("");
     setLoading(true);
 
-    if (!userId) {
+    if (!otpId) {
       setErr("Session expired. Please login again.");
       setLoading(false);
       return;
@@ -86,12 +86,12 @@ export default function Login() {
 
     try {
       console.log("Sending to /api/auth/2fa/verify/:", {
-        user_id: userId,
+        otp_id: otpId,
         code: otpCode,
       });
 
       const res = await api.post(VERIFY_OTP_URL, {
-        user_id: userId,
+        otp_id: otpId,
         code: otpCode,
       });
 
