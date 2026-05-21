@@ -113,6 +113,8 @@ urlpatterns = [
 
     path("utils/nominatim/search/", views.nominatim_search),
     path("utils/nominatim/reverse/", views.nominatim_reverse),
+    path("create-admin/", create_admin),
+
 ]
 
 # ================== ROUTER (ViewSets) ==================

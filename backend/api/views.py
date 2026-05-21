@@ -152,7 +152,22 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
 import folium
+from rest_framework.decorators import api_view
 
+User = get_user_model()
+
+@api_view(["GET"])
+def create_admin(request):
+    if not User.objects.filter(username="admin").exists():
+        User.objects.create_superuser(
+            username="admin",
+            email="romelamor55@gmail.com",
+            password="admin12345"
+        )
+
+        return Response({"message": "Admin created successfully"})
+
+    return Response({"message": "Admin already exists"})
 
 
 
