@@ -1,0 +1,744 @@
+/* ============ SCOPE: ADMIN MAPS PAGE ============ */
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+
+/* buttons */
+.leaflet-control-zoom a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  font-size: 18px !important;
+  font-weight: bold;
+  color: #1e293b !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  text-decoration: none !important;
+}
+
+/* remove border sa last */
+.leaflet-control-zoom a:last-child {
+  border-bottom: none !important;
+}
+
+/* hover effect */
+.leaflet-control-zoom a:hover {
+  background: #f1f5f9 !important;
+  color: #000 !important;
+}
+.admin-maps-page {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: radial-gradient(circle at top, #020617 0%, #020617 40%, #020617 100%);
+  min-height: calc(100vh - 64px); /* naka-base sa taas na topnav */
+}
+
+/* Error banner */
+.admin-maps-error-banner {
+  background: #7f1d1d;
+  color: #fee2e2;
+  border: 1px solid #fecaca;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+/* Header */
+.admin-maps-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.admin-maps-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #e5e7eb;
+  letter-spacing: 0.03em;
+}
+
+.admin-maps-btn-ghost {
+  background: transparent;
+  color: #e5e7eb;
+  border: 1px solid #4b5563;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.admin-maps-btn-ghost:hover {
+  background: #0f172a;
+}
+
+/* ================= FILTERS (records) ================= */
+
+.admin-maps-filters {
+  border-radius: 10px;
+  background: #020617;
+  border: 1px solid #1f2937;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
+  padding: 10px;
+  gap: 10px;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: flex-end;
+}
+
+.admin-maps-filters .filter {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 150px;
+}
+
+.admin-maps-filters .filter span {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+}
+
+.admin-maps-filters .filter select,
+.admin-maps-filters .filter input[type="date"],
+.admin-maps-filters .filter input[type="text"],
+.admin-maps-filters .filter input[type="search"] {
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid #4b5563;
+  background: #020617;
+  color: #e5e7eb;
+  padding: 6px 8px;
+}
+
+.admin-maps-filters .filter select:focus,
+.admin-maps-filters .filter input:focus {
+  outline: 1px solid #38bdf8;
+  border-color: #38bdf8;
+}
+
+.admin-maps-filter-grow {
+  flex: 1 1 180px;
+}
+
+.admin-maps-layer-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.admin-maps-layer-toggles label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #e5e7eb;
+}
+
+/* ================= MAP SECTION ================= */
+
+.admin-maps-map-section {
+  flex: 1;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-maps-map-shell {
+  position: relative;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #1f2937;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.75);
+  background: #020617;
+}
+
+.admin-maps-leaflet-map {
+  height: 100%;
+  width: 100%;
+}
+
+/* ================= STATION ICON (divIcon) ================= */
+
+.admin-maps-station-banner {
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+}
+
+.admin-maps-station-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 2px solid #1e3a8a;
+  background-color: #fff;
+}
+
+.admin-maps-station-pill {
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: #f9fafb;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  font-size: 11px;
+  text-transform: uppercase;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  white-space: nowrap;
+}
+
+/* Suspect star */
+
+.admin-maps-star-marker-inner {
+  font-size: 28px;
+  color: #ef4444;
+  transform: translate(-50%, -50%);
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Search pin icon */
+
+.admin-maps-search-pin-inner {
+  transform: translate(-50%, -100%);
+}
+
+.admin-maps-search-pin-inner svg {
+  width: 28px;
+  height: 28px;
+  fill: #2563eb;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
+}
+
+/* ================= POPUPS (generic) ================= */
+
+.admin-maps-popup {
+  min-width: 220px;
+  font-size: 13px;
+  color: #0f172a;
+}
+
+.admin-maps-popup-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.admin-maps-popup-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #e5e7eb;
+  object-fit: cover;
+}
+
+.admin-maps-popup-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.admin-maps-popup-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.admin-maps-popup-text {
+  margin-top: 4px;
+  white-space: pre-wrap;
+}
+
+.admin-maps-popup-coords {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.admin-maps-popup-photo {
+  margin-top: 8px;
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+.admin-maps-popup-date {
+  color: #6b7280;
+}
+
+.admin-maps-popup-status {
+  color: #111827;
+}
+
+/* Search pin popup */
+
+.admin-maps-pin-popup {
+  font-size: 13px;
+}
+
+.admin-maps-pin-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.admin-maps-pin-row {
+  margin-bottom: 2px;
+}
+
+.admin-maps-btn-clear-pin {
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+/* ================= SEARCH OVERLAY SA MAPA ================= */
+
+.admin-maps-search-overlay {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 500;
+  max-width: 460px;
+  width: 100%;
+  pointer-events: none;
+}
+
+.admin-maps-search-card {
+  pointer-events: auto;
+  background: radial-gradient(circle at top left, #1e293b 0%, #020617 60%);
+  color: #e5e7eb;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.85);
+  font-size: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.admin-maps-search-label {
+  margin-bottom: 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+}
+
+.admin-maps-search-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.admin-maps-search-input-wrap {
+  position: relative;
+  flex: 1;
+}
+
+.admin-maps-search-input {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #4b5563;
+  background: rgba(15, 23, 42, 0.96);
+  color: #e5e7eb;
+  font-size: 12px;
+}
+
+.admin-maps-search-input::placeholder {
+  color: #6b7280;
+}
+
+.admin-maps-search-input:focus {
+  outline: 1px solid #38bdf8;
+  border-color: #38bdf8;
+}
+
+/* Suggestions dropdown */
+
+.admin-maps-suggestions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 600;
+  background: #020617;
+  border: 1px solid #4b5563;
+  border-top: none;
+  max-height: 260px;
+  overflow-y: auto;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.9);
+}
+
+.admin-maps-suggestion-item {
+  padding: 7px 9px;
+  border-top: 1px solid #4b5563;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  line-height: 1.2;
+}
+
+.admin-maps-suggestion-item:hover {
+  background: #0f172a;
+}
+
+.admin-maps-suggestion-badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #0f766e;
+  color: #f9fafb;
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+}
+
+.admin-maps-suggestion-text {
+  overflow: hidden;
+}
+
+.admin-maps-suggestion-title {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.admin-maps-suggestion-sub {
+  font-size: 11px;
+  opacity: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Search buttons */
+
+.admin-maps-btn-locate {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  font-size: 11px;
+}
+
+.admin-maps-btn-danger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  background: #7f1d1d;
+  border: 1px solid #fecaca;
+  color: #fee2e2;
+}
+
+.admin-maps-btn-danger:hover {
+  background: #991b1b;
+}
+
+.admin-maps-btn-text {
+  display: inline-block;
+}
+
+.admin-maps-search-error {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #fecaca;
+}
+
+/* ================= LEGEND ================= */
+
+.admin-maps-legend-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.admin-maps-legend-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: #e5e7eb;
+}
+
+.admin-maps-legend-dot {
+  display: inline-block;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  border: 2px solid transparent;
+}
+
+.admin-maps-legend-dot-victim {
+  background: #fde047;
+  border-color: #eab308;
+}
+
+.admin-maps-legend-suspect-icon {
+  color: #ef4444;
+  font-size: 16px;
+  margin-left: 10px;
+  line-height: 0;
+}
+
+.admin-maps-legend-station {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 10px;
+}
+
+.admin-maps-legend-station-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #f9fafb;
+  border: 2px solid #1e3a8a;
+}
+
+.admin-maps-legend-station-pill {
+  padding: 2px 8px;
+  background: #1e3a8a;
+  color: #f9fafb;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.admin-maps-legend-loading {
+  margin-left: 12px;
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.admin-maps-legend-right {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Utility override for chips inside legend */
+.admin-maps-legend-right .chip {
+  background: #0b1120;
+  border-color: #1f2937;
+  color: #e5e7eb;
+}
+
+/* ============ RESPONSIVE ============ */
+
+@media (max-width: 1024px) {
+  .admin-maps-page {
+    padding: 12px;
+  }
+
+  .admin-maps-search-overlay {
+    max-width: 380px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-maps-page {
+    padding: 10px;
+  }
+
+  .admin-maps-header h1 {
+    font-size: 20px;
+  }
+
+  .admin-maps-filters {
+    padding: 8px;
+    overflow-x: auto;
+  }
+
+  .admin-maps-map-section {
+    min-height: 280px;
+  }
+
+  .admin-maps-search-overlay {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 100%;
+    padding-inline: 8px;
+  }
+
+  .admin-maps-search-row {
+    flex-wrap: wrap;
+  }
+
+  .admin-maps-btn-locate,
+  .admin-maps-btn-danger {
+    font-size: 10px;
+    padding-inline: 8px;
+  }
+
+  .admin-maps-legend-row {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-maps-header h1 {
+    font-size: 18px;
+  }
+
+  .admin-maps-map-section {
+    min-height: 240px;
+  }
+}
+/* ===== Stats overlay ===== */
+.stats-overlay {
+  background: rgba(15,23,42,0.92);
+  border: 1px solid rgba(148,163,184,0.35);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #e5e7eb;
+  font-size: 12px;
+  min-width: 160px;
+  backdrop-filter: blur(8px);
+}
+.stats-title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #9ca3af;
+  margin-bottom: 6px;
+}
+.stats-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 0;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.stats-val {
+  margin-left: auto;
+  font-weight: 700;
+  color: #f9fafb;
+  font-size: 13px;
+}
+.stats-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.stats-dot.ongoing  { background: #fde047; border: 1.5px solid #eab308; }
+.stats-dot.solved   { background: #bbf7d0; border: 1.5px solid #16a34a; }
+.stats-dot.unsolved { background: #fecaca; border: 1.5px solid #dc2626; }
+.stats-dot.station  { background: #fff; border: 1.5px solid #1e3a8a; }
+
+/* ===== Detail side panel ===== */
+.detail-panel {
+  width: 0;
+  overflow: hidden;
+  transition: width .3s ease, padding .3s ease;
+  background: #0f172a;
+  border-left: 1px solid #1f2937;
+  border-radius: 0 10px 10px 0;
+  position: relative;
+  flex-shrink: 0;
+  padding: 0;
+}
+.detail-panel.open {
+  width: 280px;
+  padding: 20px 16px;
+  overflow-y: auto;
+}
+.detail-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  font-size: 16px;
+}
+.detail-close:hover { color: #e5e7eb; }
+.detail-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+.detail-badge[data-kind="victim"]  { background: #78350f; color: #fde68a; }
+.detail-badge[data-kind="suspect"] { background: #7f1d1d; color: #fecaca; }
+.detail-badge[data-kind="station"] { background: #1e3a8a; color: #bfdbfe; }
+.detail-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f9fafb;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.detail-crime {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+.detail-status {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.detail-status.status-ongoing  { background: #713f12; color: #fde68a; }
+.detail-status.status-solved   { background: #14532d; color: #bbf7d0; }
+.detail-status.status-unsolved { background: #7f1d1d; color: #fecaca; }
+.detail-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12px;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #1f2937;
+}
+.detail-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: #64748b;
+}
+
+
+
+/* ===== Print styles ===== */
+@media print {
+  .sidebar, .topnav, .filters-bar, .detail-panel,
+  .leaflet-control, .admin-maps-search-overlay { display: none !important; }
+  .leaflet-map { height: 100vh !important; }
+}
+

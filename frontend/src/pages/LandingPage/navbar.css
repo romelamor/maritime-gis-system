@@ -1,0 +1,63 @@
+/* ===== TOP NAVBAR (HORIZONTAL) ===== */
+
+.navbar-top {
+  width: 100%;
+  height: 60px;
+  background: #0A2A43; /* Navy Blue */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Brand / Logo */
+.navbar-brand {
+  color: #F2C94C; /* Gold accent */
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Menu container */
+.navbar-menu {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Links */
+.navbar-menu li a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: 0.25s ease;
+  padding: 6px 4px;
+}
+
+/* Hover effect with maritime highlight */
+.navbar-menu li a:hover {
+  color: #1DA1F2; /* Sky Blue highlight */
+  border-bottom: 2px solid #1DA1F2;
+}
+
+/* Active link (optional) */
+.navbar-menu li a.active {
+  color: #F2C94C; /* Gold */
+  border-bottom: 2px solid #F2C94C;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none; /* hide for now (we can add hamburger next) */
+  }
+}

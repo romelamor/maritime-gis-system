@@ -1,0 +1,156 @@
+/* src/assets/css/userdashboard.css
+   Clean version — no link underlines ever, fully responsive, with accessible focus
+*/
+
+/* Alerts */
+.ud-alert-error {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 12px;
+  border: 1px solid #fecaca;
+}
+
+/* Card grid */
+.ud-card-grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 8px;
+  grid-template-columns: repeat(1, 1fr);
+}
+@media (min-width: 480px) {
+  .ud-card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 880px) {
+  .ud-card-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1200px) {
+  .ud-card-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Card base (Link container) */
+.ud-card {
+  display: block;
+  text-decoration: none !important; /* no underline even when clicked */
+  color: inherit;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e6e9ef;
+  padding: 14px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  min-height: 92px;
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+/* Remove underline in ALL link states */
+.ud-card:link,
+.ud-card:visited,
+.ud-card:hover,
+.ud-card:active,
+.ud-card:focus {
+  text-decoration: none !important;
+  color: inherit;
+  outline: none;
+}
+
+/* Hover effect */
+.ud-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(19, 24, 33, 0.06);
+}
+
+/* Focus effect for keyboard users */
+.ud-card:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.25);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* Card content */
+.ud-card-label { font-size: 13px; color: #6b7280; }
+.ud-card-value { font-size: 26px; font-weight: 800; margin-top: 6px; }
+.ud-card-sub { font-size: 12px; color: #6b7280; margin-top: 6px; }
+
+/* Variants */
+.ud-card--total { background: #ffffff; border-color: #dbeafe; }
+.ud-card--solved { background: #ecfdf5; border-color: #a7f3d0; }
+.ud-card--unresolved { background: #fff7ed; border-color: #fed7aa; }
+.ud-card--rate { background: #eff6ff; border-color: #bfdbfe; }
+
+/* Progress bar */
+.ud-progress-outer {
+  background: #e5e7eb;
+  border-radius: 999px;
+  height: 8px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+.ud-progress-inner {
+  background: #3b82f6;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+/* Loading card */
+.ud-card-loading {
+  border: 1px solid #eee;
+  padding: 16px;
+  border-radius: 12px;
+  background: #fff;
+}
+
+/* Table card */
+.ud-table-card {
+  margin-top: 10px;
+  border-radius: 12px;
+  overflow-x: auto;
+  border: 1px solid #eee;
+  background: #fff;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Table */
+.ud-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 720px;
+}
+.ud-table thead th {
+  background: #f9fafb;
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+}
+.ud-table tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f3f4f6;
+}
+.ud-table tbody tr:hover {
+  background: rgba(2,6,23,0.02);
+}
+
+/* Location sub text */
+.ud-location-sub {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+/* Status colors */
+.ud-status--solved { color: #065f46; font-weight: 600; }
+.ud-status--unresolved { color: #9a3412; font-weight: 600; }
+
+/* Responsive tweaks */
+@media (max-width: 720px) {
+  .ud-card-value { font-size: 22px; }
+}
+@media (max-width: 480px) {
+  .ud-card { padding: 12px; min-height: 72px; }
+  .ud-card-value { font-size: 18px; }
+  .ud-card-sub { font-size: 11px; }
+  .ud-table { min-width: 640px; }
+}

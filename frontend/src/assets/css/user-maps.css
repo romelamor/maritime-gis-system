@@ -1,0 +1,381 @@
+/* ==========================================
+   User Maps — Light, Responsive UI
+   ========================================== */
+
+
+
+/* General page spacing alignment with your dashboard */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.page-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ---- Filters Bar ---- */
+.filters-bar {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.filter {
+  display: grid;
+  gap: 6px;
+  grid-column: span 3; /* default: 4 items per row on wide screens */
+  min-width: 0;
+}
+.filter.grow {
+  grid-column: span 6; /* wider search fields */
+}
+.filter > span {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--text-subtle);
+}
+
+/* Inputs */
+.filter input[type="text"],
+.filter input[type="date"],
+.filter select {
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-2);
+  outline: none;
+  font-size: 14px;
+  color: var(--text);
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.filter input[type="text"]::placeholder {
+  color: #a3aab9;
+}
+.filter input[type="text"]:focus,
+.filter input[type="date"]:focus,
+.filter select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-100);
+  background: #fff;
+}
+
+/* Toggle group */
+.toggles {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  padding: 0 2px;
+}
+.toggles label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* ---- Buttons ---- */
+.btn {
+  height: 38px;
+  padding: 0 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  transition: transform .06s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn:hover {
+  background: var(--accent-600);
+  border-color: var(--accent-600);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, .22);
+  transform: translateY(-1px);
+}
+.btn:active { transform: translateY(0); box-shadow: none; }
+
+.btn.danger {
+  background: var(--danger);
+  border-color: var(--danger);
+}
+.btn.danger:hover {
+  background: #dc2f2f;
+  border-color: #dc2f2f;
+  box-shadow: 0 8px 18px rgba(239, 68, 68, .22);
+}
+
+/* ---- Map Card ---- */
+.map-card {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+}
+.map-wrap {
+  position: relative;
+  height: 68vh;
+  min-height: 420px;
+  background: var(--bg);
+}
+.map {
+  height: 100%;
+  width: 100%;
+}
+
+/* ---- Leaflet polish ---- */
+.leaflet-container {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  background: var(--bg);
+}
+
+.leaflet-control-layers {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+.leaflet-popup-tip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+/* Popup content */
+.u-pop { max-width: 280px; line-height: 1.4; }
+.u-pop-h {
+  font-weight: 800;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+.u-pop-row {
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+.u-pop-sub {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.u-pop-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+.u-pop-link:hover { text-decoration: underline; }
+
+/* ---- Custom markers ---- */
+.star-marker {
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.28));
+}
+.search-marker svg {
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,.28));
+}
+
+/* ---- Alerts ---- */
+.alert {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+.alert.error {
+  background: var(--danger-100);
+  color: #8b1d1d;
+  border: 1px solid #ffc9c9;
+}
+
+/* ---- Status bar ---- */
+.statusbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 2px;
+  color: var(--text-dim);
+}
+.statusbar .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: #f4f7fb;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 12px;
+}
+/* ==========================================
+   USERMAPS RESPONSIVE SIDEBAR LAYOUT
+   ========================================== */
+
+.usermaps-container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ===== MAIN CONTENT ===== */
+.usermaps-main {
+  flex: 1;
+
+  margin-left: 260px;
+
+  width: calc(100% - 260px);
+
+  padding: 20px;
+
+  transition:
+    margin-left 0.3s ease,
+    width 0.3s ease;
+
+  overflow-x: hidden;
+}
+
+/* kapag naka collapse */
+.usermaps-main.sidebar-collapsed {
+  margin-left: 80px;
+
+  width: calc(100% - 80px);
+}
+
+/* kapag collapsed sidebar */
+.usermaps-main.sidebar-collapsed {
+  width: calc(100% - 80px);
+}
+
+/* ==========================================
+   TABLET
+   ========================================== */
+
+@media (max-width: 1024px) {
+
+  .usermaps-main {
+    width: calc(100% - 220px);
+    padding: 16px;
+  }
+
+  .usermaps-main.sidebar-collapsed {
+    width: calc(100% - 70px);
+  }
+
+}
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 768px) {
+
+  .usermaps-main,
+  .usermaps-main.sidebar-collapsed {
+    width: 100%;
+    padding: 14px;
+  }
+
+  .map-wrap {
+    height: 58vh;
+  }
+
+}
+/* ==========================================
+   Suggestions dropdown (place search)
+   ========================================== */
+.place-suggest {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 500;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  box-shadow: var(--shadow-md);
+  max-height: 300px;
+  overflow-y: auto;
+}
+.place-suggest__item {
+  padding: 10px 12px;
+  cursor: pointer;
+  border-top: 1px solid var(--border-soft);
+}
+.place-suggest__item:hover {
+  background: #f6f8fc;
+}
+
+/* ==========================================
+   RESPONSIVE LAYOUT
+   - Scales filters bar gracefully
+   - Larger tap targets on mobile
+   ========================================== */
+
+/* >= 1280px: comfortable density already with 4 per row (span 3) */
+@media (max-width: 1280px) {
+  .filter { grid-column: span 4; }     /* 3 per row */
+  .filter.grow { grid-column: span 8; }
+  .map-wrap { height: 66vh; }
+}
+
+/* <= 1024px: switch to 2 per row */
+@media (max-width: 1024px) {
+  .filter { grid-column: span 6; }     /* 2 per row */
+  .filter.grow { grid-column: span 12; }
+  .map-wrap { height: 62vh; }
+  .page-header h2 { font-size: 20px; }
+}
+
+/* <= 768px: single column filters; increase control sizes */
+@media (max-width: 768px) {
+  .filters-bar {
+    padding: 10px;
+    gap: 10px;
+  }
+  .filter { grid-column: span 12; }
+  .filter input[type="text"],
+  .filter input[type="date"],
+  .filter select,
+  .btn {
+    height: 42px;              /* bigger tap area */
+    font-size: 15px;
+    border-radius: 12px;
+  }
+  .map-wrap { height: 58vh; min-height: 360px; }
+}
+
+/* <= 480px: compact titles and spacing */
+@media (max-width: 480px) {
+  .page-header { gap: 8px; }
+  .page-header h2 { font-size: 18px; }
+  .btn { height: 44px; }
+  .map-wrap { height: 55vh; min-height: 320px; }
+}

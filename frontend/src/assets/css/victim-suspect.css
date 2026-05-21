@@ -1,0 +1,930 @@
+/* src/assets/css/victim-suspect.css
+   Centered main content and responsive Victim & Suspect Tables
+   Sidebar and navbar remain untouched.
+*/
+
+.vs-scope {
+  --vs-border: #e6edf3;
+  --vs-bg: #ffffff;
+  --vs-muted: #6b7280;
+  --vs-accent: #2563eb;
+  --vs-radius: 8px;
+  --vs-font: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Layout settings */
+  --vs-global-padding-main: 20px;
+  --vs-cell-padding: 6px;
+  --vs-gap-small: 6px;
+  --vs-gap-mid: 10px;
+}
+
+/* Global Reset */
+.vs-scope * {
+  box-sizing: border-box;
+}
+.vs-scope {
+  font-family: var(--vs-font);
+  color: #111827;
+  font-size: 13px;
+  background: transparent;
+}
+
+/* ========== LAYOUT STRUCTURE ========== */
+.vs-scope .container {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+}
+
+/* Main content — now centered */
+.vs-scope .main-content {
+  flex: 1;
+  background: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 16px 18px;
+}
+
+/* Inner wrapper for all content (table, buttons, etc.) */
+.vs-scope .main-inner {
+  width: 100%;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: var(--vs-radius);
+  margin-inline: auto;
+}
+
+/* Top bar buttons */
+.vs-scope .action-bar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* ========== TABLE WRAPPER ========== */
+.vs-scope .vs-table-wrap {
+  background: var(--vs-bg);
+  border: 1px solid var(--vs-border);
+  border-radius: var(--vs-radius);
+  padding: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  box-shadow: none;
+
+}
+
+/* ========== TABLE ========== */
+.vs-scope .vs-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 13px;
+  background: transparent;
+  min-width: 36rem;
+}
+
+/* Table cell styles */
+.vs-scope .vs-thead th,
+.vs-scope .vs-tbody td {
+  padding: var(--vs-cell-padding) var(--vs-gap-small);
+  vertical-align: middle;
+  text-align: left;
+  color: #374151;
+  border: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Table header */
+.vs-scope .vs-thead th {
+  font-weight: 700;
+  font-size: 12px;
+  color: #111827;
+  background: transparent;
+}
+
+/* Row hover effect */
+.vs-scope .vs-tbody tr {
+  transition: background 0.15s ease;
+}
+.vs-scope .vs-tbody tr:hover {
+  background: #f7fbff;
+}
+
+/* ========== COLUMN WIDTHS ========== */
+.vs-scope .vs-th-vs-blotter, .vs-scope .vs-td-blotter { width: 120px; }
+.vs-scope .vs-th-vs-type, .vs-scope .vs-td-type { width: 110px; }
+.vs-scope .vs-th-vs-name, .vs-scope .vs-td-name { width: 130px; }
+.vs-scope .vs-th-vs-age, .vs-scope .vs-td-age { width: 60px; }
+.vs-scope .vs-th-vs-photo, .vs-scope .vs-td-photo { width: 64px; text-align: center; }
+.vs-scope .vs-th-vs-addr, .vs-scope .vs-td-addr { width: 200px; }
+.vs-scope .vs-th-vs-loc, .vs-scope .vs-td-loc { width: 220px; }
+.vs-scope .vs-th-vs-date, .vs-scope .vs-td-date { width: 86px; white-space: nowrap; }
+.vs-scope .vs-th-vs-status, .vs-scope .vs-td-status { width: 110px; }
+.vs-scope .vs-th-vs-actions, .vs-scope .vs-td-actions { width: 120px; }
+
+/* ========== ELEMENTS INSIDE TABLE ========== */
+.vs-scope .vs-thumb {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #f1f1f1;
+  display: inline-block;
+}
+
+/* Copy button */
+.vs-scope .vs-copy-btn {
+  margin-left: 6px;
+  padding: 3px 6px;
+  border-radius: 6px;
+  font-size: 11px;
+  border: 1px solid #e6edf3;
+  background: #fff;
+  cursor: pointer;
+  color: #374151;
+}
+.vs-scope .vs-copy-btn:hover {
+  background: #f1f5ff;
+}
+
+/* Action buttons - fallback styles for non-portal usage */
+.vs-scope .vs-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.vs-scope .vs-btn {
+  padding: 5px 8px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.2s;
+}
+.vs-scope .vs-btn.vs-btn-view,
+.vs-scope .vs-btn.vs-btn-print {
+  background: var(--vs-accent);
+  color: #fff;
+}
+.vs-scope .vs-btn.vs-btn-view:hover,
+.vs-scope .vs-btn.vs-btn-print:hover {
+  background: #1e4fd6;
+}
+.vs-scope .vs-btn.vs-btn-archive {
+  background: transparent;
+  color: #dc2626;
+}
+.vs-scope .vs-btn.vs-btn-archive:hover {
+  text-decoration: underline;
+}
+
+/* Status dropdown */
+.vs-scope .vs-status-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.vs-scope .vs-status-cell .vs-select {
+  padding: 5px 8px;
+  font-size: 12px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+/* Address wrap */
+.vs-scope .vs-td-addr,
+.vs-scope .vs-td-loc {
+  white-space: pre-wrap;
+  font-size: 12.5px;
+  line-height: 1.08;
+}
+
+/* ========== DROPDOWN (portal-friendly) ========== */
+.vs-dropdown { position: relative; display: inline-block; }
+.vs-dropdown-btn {
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+}
+.vs-dropdown-btn .vs-caret { margin-left: 6px; }
+.vs-dropdown-menu {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e6edf3;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.12);
+  overflow: hidden;
+  min-width: 140px;
+}
+.vs-dropdown-item {
+  width: 100%;
+  padding: 8px 12px;
+  text-align: left;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.vs-dropdown-item:hover { background: #f3f6ff; }
+/* ================= PAGINATION ================= */
+.pagination-container {
+  min-width: max-content; /* 🔥 KEY FIX */
+  display: flex;
+  justify-content: flex-end; /* 👉 nasa RIGHT side */
+  align-items: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Buttons */
+.pagination-btn {
+  padding: 6px 14px;
+  border-radius: 20px; 
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  color: #374151;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover effect */
+.pagination-btn:hover:not(:disabled) {
+  background-color: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+/* Disabled state */
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Page text */
+.pagination-info {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+  background: #f3f4f6;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+/* ========== MODAL STYLING ========== */
+.vs-scope .vs-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.36);
+  z-index: 99999;
+  padding: 12px;
+  overflow: auto;
+}
+
+.vs-scope .vs-modal {
+  background: #fff;
+  width: 100%;
+  max-width: 980px;
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(15,23,42,0.45);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 100000;
+  animation: vs-modal-pop .14s ease-out;
+}
+
+@keyframes vs-modal-pop {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.vs-scope .vs-modal-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  background: radial-gradient(circle at top left, #eff6ff 0, #ffffff 60%);
+}
+
+.vs-scope .vs-modal-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.vs-scope .vs-blotter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  font-size: 12px;
+  color: #111827;
+}
+.vs-scope .vs-blotter-label {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 10px;
+  color: #6b7280;
+}
+.vs-scope .vs-blotter-value {
+  font-weight: 600;
+}
+
+.vs-scope .vs-modal-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vs-scope .vs-print-irf-btn {
+  padding-inline: 12px;
+  font-size: 12px;
+}
+
+.vs-scope .vs-modal-body {
+  padding: 12px 14px 14px;
+  max-height: calc(100vh - 170px);
+  overflow: auto;
+  background: #f3f4f6;
+}
+
+.vs-scope .vs-modal-footer {
+  padding: 8px 14px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #f9fafb;
+}
+
+.vs-scope .vs-modal-btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  min-width: 112px;
+  padding: 10px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    background-color 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease;
+}
+
+.vs-scope .vs-modal-btn:hover {
+  transform: translateY(-1px);
+}
+
+.vs-scope .vs-modal-btn:active {
+  transform: translateY(0);
+}
+
+.vs-scope .vs-modal-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+}
+
+.vs-scope .vs-modal-btn-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.24);
+}
+
+.vs-scope .vs-modal-btn-primary:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.3);
+}
+
+.vs-scope .vs-modal-btn-secondary {
+  background: #ffffff;
+  color: #374151;
+  border-color: #d1d5db;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+}
+
+.vs-scope .vs-modal-btn-secondary:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #111827;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
+}
+
+/* ========== NEW MODAL LAYOUT ========== */
+.vs-scope .vs-modal-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1.2fr;
+  gap: 12px;
+}
+
+/* Columns */
+.vs-scope .vs-modal-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+/* Card */
+.vs-scope .vs-card {
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 11px;
+  box-shadow: 0 8px 18px rgba(15,23,42,0.05);
+}
+
+.vs-scope .vs-card-profile {
+  padding-bottom: 12px;
+}
+
+.vs-scope .vs-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.vs-scope .vs-card-title {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Badge styles */
+.vs-scope .vs-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.vs-scope .vs-badge-kind {
+  border: none;
+}
+.vs-scope .vs-badge-victim {
+  background: rgba(37, 99, 235, 0.1);
+  color: #1d4ed8;
+}
+.vs-scope .vs-badge-suspect {
+  background: rgba(220, 38, 38, 0.08);
+  color: #b91c1c;
+}
+
+/* Status badge colors */
+.vs-scope .vs-badge-status {
+  background: #e5e7eb;
+  color: #111827;
+}
+.vs-scope .vs-badge-status-ongoing {
+  background: rgba(234, 179, 8, 0.12);
+  color: #854d0e;
+}
+.vs-scope .vs-badge-status-solved {
+  background: rgba(22, 163, 74, 0.12);
+  color: #15803d;
+}
+.vs-scope .vs-badge-status-unsolved {
+  background: rgba(239, 68, 68, 0.12);
+  color: #b91c1c;
+}
+
+/* Profile section */
+.vs-scope .vs-profile-main {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.vs-scope .vs-profile-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 10px;
+  background: #f3f4f6;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+.vs-scope .vs-profile-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.vs-scope .vs-profile-photo-empty {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.vs-scope .vs-profile-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.vs-scope .vs-profile-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: #111827;
+}
+.vs-scope .vs-profile-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 12px;
+  color: #4b5563;
+}
+.vs-scope .vs-profile-crime {
+  margin-top: 4px;
+}
+.vs-scope .vs-profile-crime-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: #111827;
+}
+
+/* Status inline row */
+.vs-scope .vs-profile-status-row {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.vs-scope .vs-status-inline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.vs-scope .vs-status-select {
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 12px;
+}
+
+/* Field helpers */
+.vs-scope .vs-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+  margin-bottom: 2px;
+}
+.vs-scope .vs-value {
+  font-size: 13px;
+  color: #111827;
+}
+
+.vs-scope .vs-field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.vs-scope .vs-field {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.vs-scope .vs-field-block {
+  margin-top: 6px;
+}
+
+.vs-scope .vs-pre {
+  margin: 0;
+  white-space: pre-wrap;
+}
+.vs-scope .vs-pre-box {
+  background: #f9fafb;
+  padding: 6px 7px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  font-size: 12px;
+  max-height: 140px;
+  overflow: auto;
+}
+.vs-scope .vs-narrative-box {
+  max-height: 160px;
+}
+
+/* Chips */
+.vs-scope .vs-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.vs-scope .vs-chip {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #3730a3;
+  font-size: 11px;
+  font-weight: 500;
+}
+.vs-scope .vs-chip-water {
+  background: #ecfdf5;
+  color: #15803d;
+}
+
+/* Map block */
+.vs-scope .vs-map-block {
+  margin-top: 8px;
+}
+.vs-scope .vs-map-frame {
+  margin-top: 4px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  background: #f9fafb;
+  height: 220px;
+}
+.vs-scope .vs-map-empty {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Related entities */
+.vs-scope .vs-muted-text {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.vs-scope .vs-related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 8px;
+}
+.vs-scope .vs-related-card {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+.vs-scope .vs-related-photo {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  background: #f3f4f6;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  border: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+.vs-scope .vs-related-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.vs-scope .vs-related-photo-empty {
+  font-size: 11px;
+  color: #9ca3af;
+}
+.vs-scope .vs-related-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.vs-scope .vs-related-name {
+  font-weight: 600;
+  font-size: 13px;
+}
+.vs-scope .vs-related-meta {
+  font-size: 12px;
+  color: #4b5563;
+}
+.vs-scope .vs-related-addr {
+  font-size: 11.5px;
+  color: #6b7280;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===========================================================
+   ACTION BUTTON + DROPDOWN (SCOPED TO .vs-sCOPE ONLY)
+   =========================================================== */
+
+.vs-scope .vs-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.vs-scope .vs-dropdown-btn {
+  background: #2563eb;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
+  transition: all 0.18s ease-in-out;
+}
+
+.vs-scope .vs-dropdown-btn:hover {
+  background: #1e4ed8;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.34);
+  transform: translateY(-1px);
+}
+
+.vs-scope .vs-dropdown-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.22);
+}
+
+/* Small caret arrow */
+.vs-scope .vs-caret {
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+/* Dropdown menu */
+.vs-scope .vs-dropdown-menu {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  min-width: 150px;
+  padding: 6px 0;
+  box-shadow: 0 14px 32px rgba(0,0,0,0.15);
+  z-index: 999999;
+}
+
+.vs-scope .vs-dropdown-item {
+  width: 100%;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #111827;
+  transition: background 0.12s ease;
+  border-radius: 6px;
+}
+
+.vs-scope .vs-dropdown-item:hover {
+  background: #f3f6ff;
+  color: #1e40af;
+}
+
+/* Print version — hide interactive buttons, show text actions */
+.vs-scope .vs-print-actions {
+  display: none;
+  font-size: 12px;
+  color: #111;
+}
+
+@media print {
+  /* hide the interactive dropdown buttons & menu */
+  .vs-scope .vs-dropdown,
+  .vs-scope .vs-dropdown-btn,
+  .vs-scope .vs-dropdown-menu {
+    display: none !important;
+  }
+
+  /* show static printable labels */
+  .vs-scope .vs-print-actions {
+    display: inline-block !important;
+  }
+
+  .vs-scope .vs-print-action-item {
+    margin-right: 8px;
+  }
+
+  .vs-scope .vs-print-action-item::after {
+    content: "·";
+    margin-left: 6px;
+    color: #555;
+  }
+
+  .vs-scope .vs-print-action-item:last-child::after {
+    content: "";
+  }
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 1200px) {
+  .vs-scope .main-inner {
+    max-width: 100%;
+  }
+  .vs-scope .vs-thead th,
+  .vs-scope .vs-tbody td {
+    font-size: 12px;
+    padding: 5px;
+  }
+  .vs-scope .vs-thumb {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 900px) {
+  .vs-scope .vs-modal-layout {
+    grid-template-columns: 1fr;
+  }
+  .vs-scope .vs-modal-body {
+    max-height: calc(100vh - 140px);
+  }
+  .vs-scope .vs-profile-main {
+    grid-template-columns: 1fr;
+    justify-items: flex-start;
+  }
+  .vs-scope .vs-modal-btn {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .vs-scope .main-content {
+    padding: 10px;
+  }
+  .vs-scope .vs-table {
+    min-width: 520px;
+  }
+  .vs-scope .vs-thead th,
+  .vs-scope .vs-tbody td {
+    font-size: 11px;
+    padding: 5px;
+  }
+}
+
+/* ========== PRINT MODE (tables) ========== */
+@media print {
+  .vs-scope .topnav,
+  .vs-scope .sidebar,
+  .vs-scope .action-bar {
+    display: none !important;
+  }
+  .vs-scope .vs-table {
+    font-size: 11px;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .pagination-container {
+    justify-content: center; /* center sa mobile */
+    flex-wrap: wrap;
+  }
+  .vs-scope .vs-modal-footer {
+    justify-content: stretch;
+  }
+  .vs-scope .vs-modal-btn {
+    width: 100%;
+  }
+}

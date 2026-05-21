@@ -1,0 +1,139 @@
+/* ===== FORM CONTAINER ===== */
+.crime-form {
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* ===== SECTION CARD ===== */
+.form-section {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px; /* 🔥 mas maliit height */
+  margin-bottom: 12px;
+}
+
+/* ===== SECTION TITLE ===== */
+.form-section h2 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* ===== GRID SYSTEM (PANTAY FIELDS) ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 🔥 3 columns para di mahaba */
+  gap: 10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== INPUT GROUP ===== */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* FULL WIDTH FIELD */
+.input-group.full {
+  grid-column: span 3;
+}
+
+/* ===== LABEL ===== */
+.input-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* ===== INPUT / SELECT ===== */
+.input-group input,
+.input-group select {
+  height: 36px; /* 🔥 uniform height */
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  outline: none;
+}
+
+/* ===== TEXTAREA ===== */
+.input-group textarea {
+  font-size: 13px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  min-height: 70px; /* 🔥 di na sobrang taas */
+  resize: vertical;
+}
+
+/* ===== IMAGE PREVIEW (VICTIM / SUSPECT) ===== */
+.img-preview {
+  margin-top: 6px;
+}
+
+.img-preview img {
+  width: 80px;  /* 🔥 from 160 → 80 */
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+/* ===== RADIO GROUP ===== */
+.radio-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+}
+
+/* ===== CHECKBOX ===== */
+.checkbox-inline {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+
+/* ===== BUTTON AREA ===== */
+.form-actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ===== SUBMIT BUTTON ===== */
+.submit-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  background: #111827;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  opacity: 0.9;
+}

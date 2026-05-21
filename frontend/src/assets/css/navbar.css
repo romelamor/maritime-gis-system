@@ -1,0 +1,75 @@
+/* ===== NavSidebar required styles (append to your navbar.css) ===== */
+
+.navsidebar-root{
+  min-height:100vh;
+}
+
+/* Sidebar base */
+.lp-sidebar{
+  position:fixed;
+  left:0;
+  top:0;
+  height:100vh;
+  width:260px;
+  background:#fff;
+  border-right:1px solid #eef3f7;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.06);
+  padding:16px;
+  transform:translateX(-120%);
+  transition:transform .28s ease, visibility .28s;
+  z-index:1200;
+  display:flex;
+  flex-direction:column;
+  visibility:hidden;
+}
+
+/* When visible (mobile slide-over) */
+.lp-sidebar.visible{ transform:translateX(0); visibility:visible; }
+
+/* Persistent desktop sidebar: remove fixed transform and show in flow */
+.lp-sidebar.persistent{
+  position:static;
+  transform:none;
+  visibility:visible;
+  height:auto;
+  width:260px;
+  box-shadow:none;
+  border-right:0;
+}
+
+/* small logo inside sidebar */
+.lp-logo.small{ width:36px; height:36px; border-radius:10px; font-size:14px }
+
+/* overlay for mobile */
+.lp-overlay{
+  position:fixed; inset:0; background:rgba(2,6,23,0.35); opacity:0; pointer-events:none; transition:opacity .2s;
+  z-index:1100;
+}
+.lp-overlay.visible{ opacity:1; pointer-events:auto; }
+
+/* Desktop layout: when sidebar persistent, push content to the right */
+.content-wrap.with-desktop-sidebar{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:20px;
+  align-items:start;
+}
+
+/* Ensure header sits above sidebar overlay */
+.lp-header{ z-index:1300; position:relative }
+
+/* Hide desktop-only elements on small screens */
+.desktop-only{ display:none }
+
+/* Show desktop-only on large screens */
+@media(min-width:1024px){
+  .desktop-only{ display:inline-flex; }
+  /* hide mobile hamburger icon if you want, but we keep it for toggling */
+  .lp-icon-btn { display:inline-flex; }
+}
+
+/* On small screens, hide the persistent layout */
+@media(max-width:1023px){
+  .content-wrap.with-desktop-sidebar{ display:block; }
+  .lp-sidebar.persistent{ display:none; }
+}
