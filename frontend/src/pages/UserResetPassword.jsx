@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/login.css";
 
-const API_RESET = "http://localhost:8000/api/user/forgot/reset-password/";
+const API_RESET = "https://maritime-backend-0gib.onrender.com/api/user/forgot/reset-password/";
 
 export default function UserResetPassword() {
 

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/login.css";
 
-const API_SEND = "http://localhost:8000/api/user/forgot/send-code/";
+const API_SEND = "https://maritime-backend-0gib.onrender.com/api/user/forgot/send-code/";
 
 export default function UserForgotPassword() {
 

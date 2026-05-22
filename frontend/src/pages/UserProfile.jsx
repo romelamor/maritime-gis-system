@@ -17,7 +17,7 @@ import {
 import "../assets/css/userinfo.css";
 
 /** API base */
-const API_BASE = (import.meta.env.VITE_API_BASE || "http://localhost:8000/api").replace(/\/$/, "");
+const API_BASE = (import.meta.env.VITE_API_BASE || "https://maritime-backend-0gib.onrender.com/api").replace(/\/$/, "");
 
 /** Auth header */
 function authHeader() {

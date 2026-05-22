@@ -34,11 +34,11 @@ L.Marker.prototype.options.icon = DefaultIcon;
 /* ================= CONFIG ================= */
 /**
  * NOTE:
- * - Default: http://localhost:8000  (no trailing /, no /api)
+ * - Default: https://maritime-backend-0gib.onrender.com  (no trailing /, no /api)
  * - Endpoints below use `${API_BASE}/api/...`
- * - In .env, set: VITE_API_BASE=http://localhost:8000
+ * - In .env, set: VITE_API_BASE=https://maritime-backend-0gib.onrender.com
  */
-const API_BASE = (import.meta.env.VITE_API_BASE || "http://localhost:8000").replace(/\/$/, "");
+const API_BASE = (import.meta.env.VITE_API_BASE || "https://maritime-backend-0gib.onrender.com").replace(/\/$/, "");
 
 /** Build Authorization header from localStorage token */
 function authHeader() {

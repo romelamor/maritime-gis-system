@@ -42,7 +42,7 @@ L.Icon.Default.mergeOptions({
 });
 
 /* ================== CONFIG ================== */
-const API_BASE = "http://localhost:8000/api";
+const API_BASE = "https://maritime-backend-0gib.onrender.com/api";
 const VICTIM_STATUSES = ["Ongoing", "Solved", "Unsolved"];
 
 /* 🔐 AUTH HEADER (same pattern as Dashboard.jsx) */

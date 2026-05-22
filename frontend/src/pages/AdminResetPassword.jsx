@@ -5,11 +5,11 @@ import "../assets/css/login.css";
 
 /**
  * API CONTRACT:
- * POST http://localhost:8000/api/admin/forgot/reset-password/
+ * POST https://maritime-backend-0gib.onrender.com/api/admin/forgot/reset-password/
  *  Body: { email, code, new_password }
  *  Resp: { message: "Password updated" }
  */
-const API_RESET = "http://localhost:8000/api/admin/forgot/reset-password/";
+const API_RESET = "https://maritime-backend-0gib.onrender.com/api/admin/forgot/reset-password/";
 
 export default function AdminResetPassword() {
   const navigate = useNavigate();

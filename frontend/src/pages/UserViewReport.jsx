@@ -28,7 +28,7 @@ import { width } from "@fortawesome/free-solid-svg-icons/fa0";
 
 /* ================== CONFIG ================== */
 const RAW_API_BASE =
-  import.meta.env.VITE_API_BASE || "http://localhost:8000/api";
+  import.meta.env.VITE_API_BASE || "https://maritime-backend-0gib.onrender.com/api";
 
 const API_BASE = RAW_API_BASE.replace(/\/$/, "");
 

@@ -16,7 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../lib/api"; // ✅ shared Axios client (with JWT + refresh)
 
 /* ================= CONFIG ================= */
-const API_BASE = import.meta?.env?.VITE_API_BASE || "http://localhost:8000";
+const API_BASE = import.meta?.env?.VITE_API_BASE || "https://maritime-backend-0gib.onrender.com";
 const ENDPOINTS = {
   officers: "/api/personnel/",
 };

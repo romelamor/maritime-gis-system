@@ -5,11 +5,11 @@ import "../assets/css/login.css";
 
 /**
  * API CONTRACT (adjust if your backend differs):
- * POST http://localhost:8000/api/admin/forgot/send-code/
+ * POST https://maritime-backend-0gib.onrender.com/api/admin/forgot/send-code/
  *  Body: { email }
  *  Resp: { message: "OTP sent" } or 404 if not found (or generic message)
  */
-const API_SEND = "http://localhost:8000/api/admin/forgot/send-code/";
+const API_SEND = "https://maritime-backend-0gib.onrender.com/api/admin/forgot/send-code/";
 
 export default function AdminForgotPassword() {
   const [email, setEmail] = useState("");

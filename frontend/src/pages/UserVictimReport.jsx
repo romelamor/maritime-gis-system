@@ -30,7 +30,7 @@ const DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 /* ================= CONFIG ================= */
-const API_BASE = (import.meta.env.VITE_API_BASE || "http://localhost:8000").replace(
+const API_BASE = (import.meta.env.VITE_API_BASE || "https://maritime-backend-0gib.onrender.com").replace(
   /\/$/,
   ""
 );

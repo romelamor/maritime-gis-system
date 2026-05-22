@@ -5,16 +5,16 @@ import "../assets/css/login.css";
 
 /**
  * API CONTRACT:
- * POST http://localhost:8000/api/admin/forgot/verify-code/
+ * POST https://maritime-backend-0gib.onrender.com/api/admin/forgot/verify-code/
  *  Body: { email, code }
  *  Resp: { message: "OK" }
  *
- * POST http://localhost:8000/api/admin/forgot/send-code/
+ * POST https://maritime-backend-0gib.onrender.com/api/admin/forgot/send-code/
  *  Body: { email }
  *  Resp: { message: "OTP sent" }
  */
-const API_VERIFY = "http://localhost:8000/api/admin/forgot/verify-code/";
-const API_RESEND = "http://localhost:8000/api/admin/forgot/send-code/";
+const API_VERIFY = "https://maritime-backend-0gib.onrender.com/api/admin/forgot/verify-code/";
+const API_RESEND = "https://maritime-backend-0gib.onrender.com/api/admin/forgot/send-code/";
 
 export default function AdminVerifyOtp() {
   const navigate = useNavigate();

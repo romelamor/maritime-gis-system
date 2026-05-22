@@ -17,7 +17,7 @@ import api from "../lib/api"; // ✅ shared Axios client (with JWT, interceptors
 
 /* ================= CONFIG ================= */
 // ✅ same pattern as Dashboard / AdminVerifications
-const API_BASE = (import.meta.env.VITE_API_BASE || "http://localhost:8000").replace(
+const API_BASE = (import.meta.env.VITE_API_BASE || "https://maritime-backend-0gib.onrender.com").replace(
   /\/$/,
   ""
 );
