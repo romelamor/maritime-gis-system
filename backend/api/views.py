@@ -2284,7 +2284,7 @@ class AdminLogin2FA(APIView):
                 message,
                 settings.DEFAULT_FROM_EMAIL,
                 [user.email],
-                fail_silently=True,
+                fail_silently=False
             )
 
         except Exception as e:
