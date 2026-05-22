@@ -200,6 +200,7 @@ EMAIL_USE_TLS = True
 # IMPORTANT — Replace these
 EMAIL_HOST_USER = "maritimecrms@gmail.com"
 EMAIL_HOST_PASSWORD = "osqn smyw omnw fyfy"
+EMAIL_TIMEOUT = 10
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
