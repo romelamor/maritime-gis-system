@@ -2286,20 +2286,21 @@ class AdminLogin2FA(APIView):
         recipient_list = [user.email]
 
         try:
-        #    send_mail(
-        #         subject=subject,
-        #         message=message,
-        #         from_email=settings.DEFAULT_FROM_EMAIL,
-        #         recipient_list=[user.email],
-        #         fail_silently=False,
-        #     )
             send_mail(
                 subject,
                 message,
-                from_email,
-                recipient_list,
-                fail_silently=False,
+                settings.DEFAULT_FROM_EMAIL,
+                [user.email],
+                fail_silently=True,
             )
+      
+            # send_mail(
+            #     subject,
+            #     message,
+            #     from_email,
+            #     recipient_list,
+            #     fail_silently=False,
+            # )
         except Exception as e:
             otp.delete()
             logger.exception("Failed to send admin login OTP email: %s", e)
