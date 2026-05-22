@@ -2289,7 +2289,7 @@ class AdminLogin2FA(APIView):
             return Response(
                 {
                     "detail": "Login successful",
-                    "otp_id": 1,
+                    "otp_session_id": 1,
                     "requires_otp": True,
                 },
                 status=status.HTTP_200_OK,
