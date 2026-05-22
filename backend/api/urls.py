@@ -106,8 +106,8 @@ urlpatterns = [
 
     # ======== ADMIN 2FA (EMAIL OTP, NO MORE GOOGLE AUTH) ========
     # Frontend: POST http://127.0.0.1:8000/api/auth/login-2fa/
-    path("auth/login-2fa/", AdminLogin2FA.as_view(), name="admin-login-2fa"),
-    path("auth/2fa/verify/", Verify2FA.as_view(), name="admin-verify-2fa"),
+    # path("auth/login-2fa/", AdminLogin2FA.as_view(), name="admin-login-2fa"),
+    # path("auth/2fa/verify/", Verify2FA.as_view(), name="admin-verify-2fa"),
 
     path("user/login-otp/", UserLoginOTPInitView.as_view(), name="user-login-otp"),
     path("user/login-otp/verify/", UserLoginOTPVerifyView.as_view(), name="user-login-otp-verify"),
@@ -120,11 +120,16 @@ urlpatterns = [
     path("create-admin/", create_admin),
     path("auth/2fa/verify/", VerifyAdminOTP.as_view()),
     path(
-    "api/auth/admin/login-2fa/",
-    AdminLoginOTPInitView.as_view(),),
+    "auth/admin/login-2fa/",
+    AdminLoginOTPInitView.as_view(),
+    name="admin-login-2fa",
+    ),
+
     path(
-    "api/auth/admin/2fa/verify/",
-    AdminLoginOTPVerifyView.as_view(),)
+        "auth/admin/2fa/verify/",
+        AdminLoginOTPVerifyView.as_view(),
+        name="admin-verify-2fa",
+    ),
 
 ]
 
