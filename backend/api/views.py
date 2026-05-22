@@ -2362,6 +2362,129 @@ class VerifyAdminOTP(APIView):
             },
             status=status.HTTP_200_OK,
         )
+class AdminLoginOTPInitView(APIView):
+
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+
+        username = request.data.get("username")
+        password = request.data.get("password")
+
+        user = authenticate(
+            username=username,
+            password=password
+        )
+
+        if not user:
+            return Response(
+                {"detail": "Invalid credentials"},
+                status=401
+            )
+
+        # ADMIN ONLY
+        if not user.is_staff:
+            return Response(
+                {"detail": "Admin access only"},
+                status=403
+            )
+
+        otp_code = secrets.randbelow(900000) + 100000
+
+        EmailOTP.objects.create(
+            user=user,
+            code=str(otp_code),
+            purpose="admin_login",
+            expires_at=timezone.now() + timedelta(minutes=10)
+        )
+
+        print("ADMIN OTP:", otp_code)
+
+        return Response({
+            "user_id": user.id,
+            "detail": "OTP sent"
+        })
+    
+class AdminLoginOTPVerifyView(APIView):
+
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+
+        user_id = request.data.get("user_id")
+        code = (request.data.get("code") or "").strip()
+
+        print("VERIFY USER ID:", user_id)
+        print("VERIFY CODE:", code)
+
+        # VALIDATE USER ID
+        try:
+            user_id = int(user_id)
+
+        except (TypeError, ValueError):
+
+            return Response(
+                {"detail": "Invalid user ID"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # FIND ADMIN
+        user = User.objects.filter(
+            id=user_id,
+            is_staff=True
+        ).first()
+
+        if not user:
+
+            return Response(
+                {"detail": "Admin not found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        # FIND OTP
+        otp = EmailOTP.objects.filter(
+            user=user,
+            code=code,
+            purpose="admin_login",
+            is_used=False,
+        ).order_by("-created_at").first()
+
+        print("DATABASE OTP:", otp)
+
+        # INVALID OTP
+        if not otp:
+
+            return Response(
+                {"detail": "Invalid OTP code"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # EXPIRED
+        if timezone.now() > otp.expires_at:
+
+            return Response(
+                {"detail": "OTP expired"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # MARK USED
+        otp.is_used = True
+        otp.save(update_fields=["is_used"])
+
+        # GENERATE JWT TOKENS
+        refresh = RefreshToken.for_user(user)
+
+        print("OTP VERIFIED SUCCESSFULLY")
+
+        return Response(
+            {
+                "access": str(refresh.access_token),
+                "refresh": str(refresh),
+                "is_staff": True,
+            },
+            status=status.HTTP_200_OK,
+        )
+    
     
 class Verify2FA(APIView):
     """

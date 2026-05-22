@@ -53,6 +53,8 @@ from .views import (
     AdminUserAccountViewSet,
     analytics_breakdown_json,
     analytics_heatmap_html,
+    AdminLoginOTPInitView,
+    AdminLoginOTPVerifyView
 )
 from .views import VerifyAdminOTP
 
@@ -117,6 +119,14 @@ urlpatterns = [
     path("utils/nominatim/reverse/", views.nominatim_reverse),
     path("create-admin/", create_admin),
     path("auth/2fa/verify/", VerifyAdminOTP.as_view()),
+    path(
+    "api/auth/admin/login-2fa/",
+    AdminLoginOTPInitView.as_view(),
+    path(
+    "api/auth/admin/2fa/verify/",
+    AdminLoginOTPVerifyView.as_view(),
+),
+),
 ]
 
 # ================== ROUTER (ViewSets) ==================
