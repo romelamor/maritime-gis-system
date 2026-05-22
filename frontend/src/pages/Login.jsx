@@ -20,8 +20,8 @@ export default function Login() {
   const navigate = useNavigate();
 
   // ====== ENDPOINTS (palitan kung iba path mo sa backend) ======
-  const LOGIN_URL = "/api/auth/login-2fa/";          // STEP 1: username + password -> send OTP
-  const VERIFY_OTP_URL = "/api/auth/2fa/verify/";    // STEP 2: otp_id + code -> issue tokens
+  const LOGIN_URL = "/api/auth/admin/login-2fa/";
+  const VERIFY_OTP_URL = "/api/auth/admin/2fa/verify/"; // STEP 2: otp_id + code -> issue tokens
   const ME_URL = "/api/auth/me/";                    // get current user info
 
   async function fetchMe(accessToken) {
