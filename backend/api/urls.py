@@ -54,6 +54,7 @@ from .views import (
     analytics_breakdown_json,
     analytics_heatmap_html,
 )
+from .views import VerifyAdminOTP
 
 urlpatterns = [
     # ================== BASIC AUTH / JWT ==================
@@ -115,7 +116,7 @@ urlpatterns = [
     path("utils/nominatim/search/", views.nominatim_search),
     path("utils/nominatim/reverse/", views.nominatim_reverse),
     path("create-admin/", create_admin),
-
+    path("auth/2fa/verify/", VerifyAdminOTP.as_view()),
 ]
 
 # ================== ROUTER (ViewSets) ==================

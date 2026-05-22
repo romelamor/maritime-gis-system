@@ -2304,7 +2304,65 @@ class AdminLogin2FA(APIView):
             status=status.HTTP_200_OK,
         )
 
+class VerifyAdminOTP(APIView):
 
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def post(self, request):
+
+        user_id = request.data.get("user_id")
+        code = (request.data.get("code") or "").strip()
+
+        if not user_id or not code:
+            return Response(
+                {"detail": "user_id and code are required."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        try:
+            user = Personnel.objects.get(id=user_id)
+
+        except Personnel.DoesNotExist:
+            return Response(
+                {"detail": "User not found."},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        # ADMIN LOGIN PURPOSE
+        otp = EmailOTP.objects.filter(
+            user=user,
+            code=code,
+            purpose="login",
+            is_used=False,
+        ).order_by("-created_at").first()
+
+        if not otp:
+            return Response(
+                {"detail": "Invalid OTP code."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        if otp.expires_at < timezone.now():
+            return Response(
+                {"detail": "OTP has expired."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        otp.is_used = True
+        otp.save()
+
+        refresh = RefreshToken.for_user(user)
+
+        return Response(
+            {
+                "access": str(refresh.access_token),
+                "refresh": str(refresh),
+                "detail": "Login successful",
+            },
+            status=status.HTTP_200_OK,
+        )
+    
 class Verify2FA(APIView):
     """
     POST /api/auth/2fa/verify/
