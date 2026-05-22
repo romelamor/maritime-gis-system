@@ -2213,18 +2213,9 @@ def _generate_login_otp(length: int = 6) -> str:
 
     return f"{secrets.randbelow(10**length):0{length}d}"
 
-
 class AdminLogin2FA(APIView):
     """
     POST /api/auth/login-2fa/
-    Body: { "username": "...", "password": "..." }
-
-    STEP 1 (Admin login start)
-    - Check username + password
-    - Check is_staff
-    - Create EmailOTP (purpose="login")
-    - Send code to admin's email
-    - Return: { detail, otp_id }
     """
 
     permission_classes = [AllowAny]
@@ -2241,6 +2232,7 @@ class AdminLogin2FA(APIView):
             )
 
         user = authenticate(username=username, password=password)
+
         if not user:
             return Response(
                 {"detail": "Invalid credentials"},
@@ -2261,72 +2253,50 @@ class AdminLogin2FA(APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
+        # Delete old unused OTPs
         EmailOTP.objects.filter(
             user=user,
             purpose="login",
             is_used=False,
         ).delete()
 
+        # Generate new OTP
         code = _generate_login_otp(6)
-        now = timezone.now()
+
         otp = EmailOTP.objects.create(
             user=user,
             code=code,
             purpose="login",
-            expires_at=now + timedelta(minutes=5),
+            expires_at=timezone.now() + timedelta(minutes=5),
         )
 
         subject = "Admin Login Verification Code"
+
         message = (
             f"Your CRMS admin login verification code is: {code}\n\n"
-            "This code will expire in 5 minutes. "
-            "If you did not request this, please contact your system administrator."
+            "This code will expire in 5 minutes."
         )
-        from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "no-reply@example.com")
-        recipient_list = [user.email]
 
+        # Try sending email
         try:
-            try:
-                send_mail(
-                    subject,
-                    message,
-                    settings.DEFAULT_FROM_EMAIL,
-                    [user.email],
-                    fail_silently=True,
-                )
-            except Exception as e:
-                print("EMAIL ERROR:", e)
-
-            return Response(
-                {
-                    "detail": "OTP generated successfully",
-                    "user_id": user.id,
-                    "requires_otp": True,
-                },
-                status=status.HTTP_200_OK,
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [user.email],
+                fail_silently=True,
             )
-                
-            # send_mail(
-            #     subject,
-            #     message,
-            #     from_email,
-            #     recipient_list,
-            #     fail_silently=False,
-            # )
+
         except Exception as e:
-            otp.delete()
-            logger.exception("Failed to send admin login OTP email: %s", e)
-            return Response(
-                {
-                    "detail": "Failed to send verification code. Please try again later."
-                },
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            )
+            print("EMAIL ERROR:", e)
 
+        # Always continue login flow
         return Response(
             {
-                "detail": "A verification code has been sent to your email.",
+                "detail": "OTP generated successfully",
                 "otp_id": otp.id,
+                "user_id": user.id,
+                "requires_otp": True,
             },
             status=status.HTTP_200_OK,
         )
