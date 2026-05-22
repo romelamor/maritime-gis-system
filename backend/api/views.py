@@ -2286,14 +2286,26 @@ class AdminLogin2FA(APIView):
         recipient_list = [user.email]
 
         try:
-            send_mail(
-                subject,
-                message,
-                settings.DEFAULT_FROM_EMAIL,
-                [user.email],
-                fail_silently=True,
+            try:
+                send_mail(
+                    subject,
+                    message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [user.email],
+                    fail_silently=True,
+                )
+            except Exception as e:
+                print("EMAIL ERROR:", e)
+
+            return Response(
+                {
+                    "detail": "OTP generated successfully",
+                    "user_id": user.id,
+                    "requires_otp": True,
+                },
+                status=status.HTTP_200_OK,
             )
-      
+                
             # send_mail(
             #     subject,
             #     message,
