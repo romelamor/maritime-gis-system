@@ -121,12 +121,11 @@ urlpatterns = [
     path("auth/2fa/verify/", VerifyAdminOTP.as_view()),
     path(
     "api/auth/admin/login-2fa/",
-    AdminLoginOTPInitView.as_view(),
+    AdminLoginOTPInitView.as_view(),),
     path(
     "api/auth/admin/2fa/verify/",
-    AdminLoginOTPVerifyView.as_view(),
-),
-),
+    AdminLoginOTPVerifyView.as_view(),)
+
 ]
 
 # ================== ROUTER (ViewSets) ==================
