@@ -175,7 +175,7 @@ REST_FRAMEWORK = {
 CORS_ALLOW_ALL_ORIGINS = True
 
 CSRF_TRUSTED_ORIGINS = [
-     "https://maritime-gis-frontend.onrender.com",
+     "https://maritime-gis-system.onrender.com",
 ]
 
 # ==========================
@@ -186,8 +186,15 @@ AUTH_USER_MODEL = "api.Personnel"
 # ==========================
 # FRONTEND URLS
 # ==========================
-FRONTEND_BASE_URL = config("FRONTEND_BASE_URL", default="http://localhost:5173")
-FRONTEND_LOGIN_URL = config("FRONTEND_LOGIN_URL", default=f"{FRONTEND_BASE_URL}/login")
+FRONTEND_BASE_URL = config(
+    "FRONTEND_BASE_URL",
+    default="https://maritime-gis-system.onrender.com"
+)
+
+FRONTEND_LOGIN_URL = config(
+    "FRONTEND_LOGIN_URL",
+    default=f"{FRONTEND_BASE_URL}/login"
+)
 
 # ==========================
 # EMAIL (Gmail SMTP)
@@ -198,8 +205,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # IMPORTANT — Replace these
-EMAIL_HOST_USER = "maritimecrms@gmail.com"
-EMAIL_HOST_PASSWORD = "osqn smyw omnw fyfy"
+# EMAIL_HOST_USER = "maritimecrms@gmail.com"
+# EMAIL_HOST_PASSWORD = "osqn smyw omnw fyfy"
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 EMAIL_TIMEOUT = 10
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
