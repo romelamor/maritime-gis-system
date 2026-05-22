@@ -2278,6 +2278,9 @@ class AdminLogin2FA(APIView):
         )
 
         # Try sending email
+        print("SENDING OTP TO:", user.email)
+        print("OTP CODE:", code)
+
         try:
             send_mail(
                 subject,
